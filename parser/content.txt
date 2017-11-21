@@ -1,0 +1,45 @@
+Access Plan:
+-----------
+        Total Cost:             71.3646
+        Query Degree:           1
+
+                         Rows
+                        RETURN
+                        (   1)
+                         Cost
+                          I/O
+                          |
+                      6.64478e-05
+                        NLJOIN
+                        (   2)
+                        71.3646
+                        42.3992
+               /----------+----------\
+           1.13333                 5.86304e-05
+           FETCH                     FETCH
+           (   3)                    (   5)
+           15.1468                   47.1541
+              2                      33.8817
+         /---+----\                /---+----\
+     1.13333       17056       21.1132      360107
+     IXSCAN   TABLE: WSCOMUSR  RIDSCN   TABLE: WSCOMUSR
+     (   4)      SCHCONFIG     (   6)      SCHSTATUS
+     7.58191        Q1         15.1594        Q2
+        1                         2
+       |                         |
+      17056                    21.1132
+ INDEX: WSCOMUSR               SORT
+    I0000321                   (   7)
+       Q1                      15.159
+                                  2
+                                 |
+                               21.1132
+                               IXSCAN
+                               (   8)
+                               15.1559
+                                  2
+                                 |
+                               360107
+                           INDEX: WSCOMUSR
+                              I0000762
+                                 Q2
